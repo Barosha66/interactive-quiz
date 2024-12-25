@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный квест</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .task { display: none; margin: 20px 0; padding: 10px; background-color: #f4f4f4; border-radius: 5px; }
+        .task.active { display: block; }
+        .task input { padding: 5px; font-size: 14px; }
+        .task button { padding: 5px 10px; font-size: 14px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Интерактивный квест</h1>
+<p>Привет! Найди правильный ответ, чтобы открыть следующее задание.</p>
+
+<!-- Задание 1 -->
+<div id="task1" class="task active">
+    <p>Какой цвет КАМАЗА в истории? (Ответ в цифре)</p>
+    <input type="text" id="answer1" placeholder="Введите ответ">
+    <button onclick="checkAnswer('answer1', 'синий', 'task1', 'task2')">Ответить</button>
+</div>
+
+<!-- Задание 2 -->
+<div id="task2" class="task">
+    <p>В каком уголке мира скрывается древнее существо? (Введите "Икучи")</p>
+    <input type="text" id="answer2" placeholder="Введите ответ">
+    <button onclick="checkAnswer('answer2', 'Икучи', 'task2', 'task3')">Ответить</button>
+</div>
+
+<!-- Задание 3 -->
+<div id="task3" class="task">
+    <p>Ты прошел квест! Поздравляю!</p>
+</div>
+
+<script>
+    function checkAnswer(inputId, correctAnswer, currentTaskId, nextTaskId) {
+        var userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
+        if (userAnswer === correctAnswer.toLowerCase()) {
+            document.getElementById(currentTaskId).classList.remove("active");
+            document.getElementById(nextTaskId).classList.add("active");
+        } else {
+            alert("Неверный ответ! Попробуй еще раз.");
+        }
+    }
+</script>
+
+</body>
+</html>
